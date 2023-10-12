@@ -1,4 +1,3 @@
-
 const createRealNode = function(virtualNode) {
     if (virtualNode.nodeType === 'text') {
         // If the virtual node is a text node, create a text node.
@@ -65,10 +64,24 @@ const createVirtualNode = function(realNode) {
         return virtualNode;
     }
 }
-const renderNewNode = function(newNode, rootElement) {
-    if (newNode && rootElement) {
+function clearNode(parentElement) {
+    while (parentElement.firstChild) {
+        parentElement.removeChild(parentElement.firstChild);
+    }
+}
 
-        rootElement.appendChild(newNode);
+const addNode = function(newNode, parentElement) {
+    if (newNode && parentElement) {
+
+        parentElement.appendChild(newNode);
+    }
+}
+const renderNewNode = function(newNode, parentElement) {
+    if (newNode && parentElement) {
+        clearNode(parentElement)
+        if (parentElement.childNodes.length == 0) {
+            parentElement.appendChild(newNode);
+        }
     }
 }
 const updateOldNode = function(realNode, oldNode, parentElement) {
