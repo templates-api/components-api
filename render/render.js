@@ -90,7 +90,7 @@ const updateOldNode = function(realNode, oldNode, parentElement) {
             // This node is not a text node
             // Check and update text content
             if (oldNode.textContent !== realNode.textContent) {
-                console.log(oldNode)
+
                 // Replace child nodes if text content doesn't match
                 while (oldNode.firstChild) {
                     oldNode.removeChild(oldNode.firstChild);
@@ -112,7 +112,7 @@ const updateOldNode = function(realNode, oldNode, parentElement) {
             }
 
             // Check and update attributes (unchanged from previous code)
-            console.log(realNode)
+
             if (realNode.attributes) {
                 for (const name of realNode.getAttributeNames()) {
                     const value = realNode.getAttribute(name);
