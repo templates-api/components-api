@@ -64,7 +64,7 @@ const createVirtualNode = function(realNode) {
         return virtualNode;
     }
 }
-function clearNode(parentElement) {
+const clearNode = function(parentElement) {
     while (parentElement.firstChild) {
         parentElement.removeChild(parentElement.firstChild);
     }
