@@ -4,25 +4,35 @@ const createRealNode = function(virtualNode) {
         return document.createTextNode(virtualNode.text);
     } else {
         // If it's an element, create the element and its attributes.
-        const element = document.createElement(virtualNode.tagName);
+        if (virtualNode.tagName) {
+            const element = document.createElement(virtualNode.tagName);
+            if (virtualNode.attributes) {
 
-        for (const [attr, value] of Object.entries(virtualNode.attributes)) {
-            element.setAttribute(attr, value);
+                for (const [attr, value] of Object.entries(virtualNode.attributes)) {
+                    element.setAttribute(attr, value);
+                }
+            }
+            if (virtualNode.style) {
+
+                for (const [style, value] of Object.entries(virtualNode.style)) {
+                    element.style[style] = value;
+                }
+            }
+            if (virtualNode.text) {
+
+                element.textContent = virtualNode.text;
+            }
+            if (virtualNode.childNodes) {
+
+                // Recursively create child nodes and append them to the element
+                for (const childVirtualNode of virtualNode.childNodes) {
+                    const childElement = createRealNode(childVirtualNode);
+                    element.appendChild(childElement);
+                }
+
+                return element;
+            }
         }
-
-        for (const [style, value] of Object.entries(virtualNode.style)) {
-            element.style[style] = value;
-        }
-
-        element.textContent = virtualNode.text;
-
-        // Recursively create child nodes and append them to the element
-        for (const childVirtualNode of virtualNode.childNodes) {
-            const childElement = createRealNode(childVirtualNode);
-            element.appendChild(childElement);
-        }
-
-        return element;
     }
 }
 const createVirtualNode = function(realNode) {
