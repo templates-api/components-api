@@ -34,7 +34,7 @@ class TableComponent extends Component
                 "height": "100%",
                 "width": "100%",
                 "margin": "0",
-                "padding":"0.25rem "+ ((window.innerWidth/2)-(45.55*window.innerWidth/100))+"px "+"0.25rem "+((window.innerWidth/2)-(17.75*window.innerWidth/100))+"px"
+                "padding":"0.25rem "+ ((window.innerWidth/2)-(50.55*window.innerWidth/100))+"px "+"0.25rem "+((window.innerWidth/2)-(50.75*window.innerWidth/100))+"px"
             }
         });
         super.setRootNode({
